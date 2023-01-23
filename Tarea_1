@@ -1,0 +1,39 @@
+create table DIA(
+Id_DIA int Primary key,
+Nombre Varchar(100),
+)
+Insert Into DIA(Id_DIA, Nombre)
+values (1,'Laborable'),(2,'S�bado'),(3,'Domingo')
+
+Create table Turno(
+Id_Turno Int Primary Key,
+Id_DIA int,
+Nombre Varchar(50)
+)
+Insert Into Turno(Id_Turno,Nombre)
+values (1,'Periodo_Punta'),(2,'Periodo_Intermedio'),(3,'Periodo_de_valle')
+
+Create table Horario(
+Id_hora Int Primary Key identity,
+Id_Turno int,
+Nombre varchar(50)
+)
+Insert Into Horario(Id_hora,Id_Turno,Nombre)
+values (1,1,'Dieciseis',2,1,'cinco & diez ,dieciseis & dieciocho,veintidos & veinticuatro',3,1,'0 a 5',4,2,'12 a 13 y 18 a 20',5,2,'6 a 12,13 a 19 y 20 a 24',6,2,'0 a 6',
+7,3,'8',8,3,'0 a 11,13 a 17,23 a 24')
+
+Create table Total_Horas(
+Id_TotalHoras Int Primary Key identity,
+Id_Turno int,
+Horas int
+)
+Insert Into Total_Horas(Id_TotalHoras,Horas)
+values (1,10), (2,9),(3,5)
+alter table Turno 
+add foreign key (Id_Dia) References Dias(Id_Dia)
+
+alter table Horario
+add foreign key (Id_Turno) References Turno(Id_Turno)
+
+alter table Total_Horas
+add foreign key (Id_Turno) References Turno(Id_Turno)
